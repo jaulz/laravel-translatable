@@ -53,11 +53,7 @@ trait HasTranslations
 
         $translation = $translations[$locale] ?? '';
 
-        if ($this->hasGetMutator($key)) {
-            return $this->mutateAttribute($key, $translation);
-        }
-
-        return $translation;
+        return $this->transformModelValue($key, $translation);
     }
 
     public function getTranslationWithFallback(string $key, string $locale): mixed
